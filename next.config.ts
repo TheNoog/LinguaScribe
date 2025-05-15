@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, webpack }) => {
     if (!isServer) {
       // Prevent `async_hooks` from being bundled for the client
       config.resolve.fallback = {
@@ -27,6 +27,12 @@ const nextConfig: NextConfig = {
         async_hooks: false, // Resolves 'async_hooks' to false (an empty module) for client builds
       };
     }
+    // Add rule to handle .node files if genkit/google-vertex-ai uses them and they cause issues
+    // This is a common pattern for native Node.js addons
+    config.module.rules.push({
+      test: /\.node$/,
+      use: 'node-loader',
+    });
     return config;
   },
 };
