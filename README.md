@@ -6,7 +6,10 @@ This is a Next.js application called LinguaScribe that allows you to generate sh
 
 To run the application locally, follow these steps:
 
-1.  **Install dependencies:**
+1.  **Stop the npm server (if already running):**
+    If you have the development server running, stop it by pressing `Ctrl + C` in the terminal where it's running.
+
+2.  **Install dependencies:**
     If you haven't already, install the project dependencies using npm:
     ```bash
     npm install
@@ -33,3 +36,9 @@ Once the development server is running:
 6.  You can use the audio player to listen to the story in the generated language.
 
 Enjoy creating and exploring stories!
+
+## Troubleshooting
+
+If you suspect a server might be running and interfering, you can use the following command to see a list of running processes and the ports they are using:
+
+lsof -i -P -n
